@@ -12,24 +12,11 @@
     force=yes
     version={{ branch }}
 
-#- name: Composer version
-#  composer: 
-#    arguments: -V
-#    working_dir: /home/www-data/mike-ansible
-#  register: hello
-
-#- debug: msg="{{ hello.stdout }}"
-
-#- name: Install composer dependencies
-#  composer:
-#    command: install
-#    working_dir: /home/www-data/mike-ansible
-
 - name: Install composer dependencies
   command: chdir={{ approot }} {{ composer_bin }} install
 
-- name: Import configuration
-  command: "{{ drush_bin }} uri={{ uri }} --root={{ webroot }} cim"
+  #- name: Import configuration
+  #command: "{{ drush_bin }} uri={{ uri }} --root={{ webroot }} cim"
 
 #- name: Create settings.php
 #  command: cp /var/www/ansible/sites/default/default.settings.php /var/www/ansible/sites/default/settings.php
