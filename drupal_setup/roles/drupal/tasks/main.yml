@@ -1,0 +1,51 @@
+---
+
+  # Clean the destination folder so that we can git clone
+# - name: Clean destination directory
+#   command: rm -rf {{ webroot }}
+
+- name: Update site from repo
+  git: >
+    repo={{ repo }}
+    dest=/home/www-data/mike-ansible
+    update=yes
+    force=yes
+    version={{ branch }}
+
+#- name: Composer version
+#  composer: 
+#    arguments: -V
+#    working_dir: /home/www-data/mike-ansible
+#  register: hello
+
+#- debug: msg="{{ hello.stdout }}"
+
+#- name: Install composer dependencies
+#  composer:
+#    command: install
+#    working_dir: /home/www-data/mike-ansible
+
+- name: Install composer dependencies
+  command: chdir={{ approot }} {{ composer_bin }} install
+
+- name: Import configuration
+  command: "{{ drush_bin }} uri={{ uri }} --root={{ webroot }} cim"
+
+#- name: Create settings.php
+#  command: cp /var/www/ansible/sites/default/default.settings.php /var/www/ansible/sites/default/settings.php
+
+#- name: Create services.yml
+#  command: cp /var/www/ansible/sites/default/default.services.yml /var/www/ansible/sites/default/services.yml
+
+#- name: Update permissions of settings.php
+#  file: path=/var/www/ansible/sites/default/settings.php mode=777
+
+#- name: Update permissions of services.yml
+#  file: path=/var/www/ansible/sites/default/services.yml mode=777
+
+#- name: Update permissions of files directory
+#  file: >
+#    path=/var/www/ansible/sites/default/files
+#    mode=777
+#    state=directory
+#    recurse=yes

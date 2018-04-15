@@ -1,0 +1,4 @@
+---
+
+- name: Create host {{ uri }}
+  command: sudo nine-manage-vhosts virtual-host create {{ uri }} --webroot={{ webroot }}
