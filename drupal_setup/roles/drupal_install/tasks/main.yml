@@ -1,0 +1,20 @@
+---
+
+- name: Dump source DB
+  mysql_db:
+    state: dump
+    name: {source_db_name}
+    login_user: {{ source_db_user }}
+    login_password: {{ source_db_pass }}
+    target: /tmp/{{ inventory_hostname }}.sql
+
+- name: Import source DB
+  mysql_db:
+    state: import
+    name: all
+    name: {db_name}
+    login_user: {{ db_user }}
+    login_password: {{ db_pass }}
+    login_user: {{ source_db_pass }}
+    login_password: {{ source_db_pass }}
+    target: /tmp/{{ inventory_hostname }}.sql

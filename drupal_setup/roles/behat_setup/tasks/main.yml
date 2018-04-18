@@ -1,0 +1,7 @@
+---
+
+- name: Install Behat dependencies
+  command: chdir={{ behat_dir }} {{ composer_bin }} install
+
+- name: Run Behat tests
+    command: chdir={{ behat_dir }} bin/behat --tags @ajax

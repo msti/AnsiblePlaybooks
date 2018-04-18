@@ -13,4 +13,4 @@
     - branch: master
 
   roles:
-    - drupal
+    - drupal_setup

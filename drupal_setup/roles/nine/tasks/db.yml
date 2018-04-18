@@ -1,7 +1,7 @@
 ---
 
 - name: Create database {{ db_name }}
-  command: sudo nine-manage-databases database create --user={{ db_user }} {{ db_name }}
+  command: sudo nine-manage-databases database create {{ db_name }} --user={{ db_user }} --password={{ db_pass }}
   register: out
 
 - debug: var=out.stdout_lines

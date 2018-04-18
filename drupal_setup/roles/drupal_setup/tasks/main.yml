@@ -15,8 +15,8 @@
 - name: Install composer dependencies
   command: chdir={{ approot }} {{ composer_bin }} install
 
-  #- name: Import configuration
-  #command: "{{ drush_bin }} uri={{ uri }} --root={{ webroot }} cim"
+#- name: Import configuration
+#  command: "{{ drush_bin }} uri={{ uri }} --root={{ webroot }} cim"
 
 #- name: Create settings.php
 #  command: cp /var/www/ansible/sites/default/default.settings.php /var/www/ansible/sites/default/settings.php

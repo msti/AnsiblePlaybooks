@@ -12,14 +12,17 @@
     - source_db_user: user
     - source_db_pass: pass
 
-    - webroot: /home/www-data/mike-ansible/web
     - approot: /home/www-data/mike-ansible
+    - webroot: /home/www-data/mike-ansible/web
     - uri: mike-ansible.zehnplus01.nine.ch
     - composer_bin: /home/www-data/bin/composer
     - drush_bin: /home/www-data/bin/drush
-    - branch: dev
-
+    - repo: git@bitbucket.org:zehnplus/mike-test.git
+    - branch: master
+    - behat_dir: /home/www-data/mike-ansible/tests
 
   roles:
     - nine
-    - drupal_setup
+    - drupal_install
+ #   - drupal_setup
+ #   - behat_setup
