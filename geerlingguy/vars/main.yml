@@ -1,0 +1,45 @@
+---
+
+php_fpm_listen: "127.0.0.1:9000"
+php_fpm_listen_allowed_clients: "127.0.0.1"
+php_fpm_pm_max_children: 50
+php_fpm_pm_start_servers: 5
+php_fpm_pm_min_spare_servers: 5
+php_fpm_pm_max_spare_servers: 5
+
+php_enable_webserver: true
+php_enablerepo: "remi,remi-php72"
+php_default_version_debian: "7.2"
+php_enable_php_fpm: true
+php_max_execution_time: "90"
+php_upload_max_filesize: "256M"
+php_packages:
+  - php7.2-common
+  - php7.2-cli
+  - php7.2-curl
+  - php7.2-dev
+  - php7.2-fpm
+  - libpcre3-dev
+  - php7.2-opcache
+  - php7.2-apcu
+  - php7.2-xml
+  - php7.2-zip
+  - php7.2-mbstring
+  - php7.2-json
+  - php7.2-gd
+  - php7.2-mysql
+
+apache_mods_enabled:
+  - expires.load
+  - ssl.load
+  - rewrite.load
+  - proxy.load
+  - proxy_fcgi.load
+apache_remove_default_vhost: true
+
+mysql_enablerepo: "remi"
+mysql_packages:
+  - mariadb-client
+  - mariadb-server
+  - python-mysqldb
+mysql_root_password: MERMQCV9EVXG7WZUE8ATB95KX

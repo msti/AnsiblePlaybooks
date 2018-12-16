@@ -1,0 +1,33 @@
+---
+- name: Converge
+  hosts: all
+  #become: true
+
+  vars_files:
+    - vars/drupal.yml
+
+  vars:
+    # Deploy from the Drupal VM Prod example project.
+    drupal_deploy: true
+    drupal_deploy_repo: "git@gitlab.com:stiv/farmak.git"
+    drupal_deploy_version: dev
+    drupal_deploy_dir: /var/www/farmak8
+    drupal_core_path: "{{ drupal_deploy_dir }}/web"
+    drupal_domain: "farmak8.devshop.mikestiv.com"
+    drupal_deploy_composer_install: true
+    drupal_db_user: mike8
+    drupal_db_name: mike8
+    drupal_db_password: mike8
+
+    # Disable Composer-based codebase setup.
+    drupal_build_composer_project: true
+    #drupal_build_composer: true
+    drupal_composer_dependencies: []
+    #drupal_composer_dependencies:
+    #  - "drupal/devel:^1.2"
+    #  - "drush/drush"
+
+  roles:
+    - role: geerlingguy.mysql
+    - role: geerlingguy.drupal
+    - role: geerlingguy.apache
