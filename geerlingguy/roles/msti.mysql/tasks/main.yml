@@ -1,0 +1,12 @@
+---
+
+- name: Create a new database
+  mysql_db:
+    name: "{{ drupal_db_name }}"
+    state: present
+
+- name: Create user and grant privileges for database
+  mysql_user:
+    name: "{{ drupal_db_user }}"
+    password: "{{ drupal_db_password }}"
+    priv: '{{ drupal_db_name }}.*:ALL'

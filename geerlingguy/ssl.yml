@@ -1,0 +1,18 @@
+---
+- name: Drupal Deploy
+  hosts: all
+  #become: true
+
+  vars_files:
+    - vars/drupal.yml
+    - vars/ssl.yml
+
+  vars:
+    drupal_domain: "xyz.devshop.mikestiv.com"
+    drupal_deploy_dir: "/var/www/{{ drupal_domain }}"
+    drupal_core_path: "{{ drupal_deploy_dir }}/web"
+    letsencrypt_email: stivaktakis@gmail.com
+
+  roles:
+    - { role: ansible-letsencrypt,  tags: letsencrypt  }
+    - { role: geerlingguy.apache,  tags: apache }

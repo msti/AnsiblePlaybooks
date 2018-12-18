@@ -4,7 +4,7 @@
   #become: true
 
   vars_files:
-    - vars/main.yml
+    - vars/server.yml
 
   vars:
     # Deploy from the Drupal VM Prod example project.

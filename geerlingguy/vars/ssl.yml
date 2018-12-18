@@ -1,0 +1,16 @@
+---
+apache_vhosts_ssl:
+  - servername: "{{ drupal_domain }}"
+    serveralias: "www.{{ drupal_domain }}"
+    documentroot: "{{ drupal_core_path }}"
+    extra_parameters: |
+      <FilesMatch \.php$>
+        SetHandler "proxy:fcgi://{{ php_fpm_listen }}"
+      </FilesMatch>
+    certificate_file: "/etc/letsencrypt/live/{{ drupal_domain }}/fullchain.pem"
+    certificate_key_file: "/etc/letsencrypt/live/{{ drupal_domain }}/privkey.pem"
+
+letsencrypt_webroot_path: "{{ drupal_core_path }}"
+letsencrypt_cert_domains:
+  - "{{ drupal_domain }}"
+letsencrypt_renewal_command_args: '--renew-hook "systemctl restart apache2.service"'  # Apache restart
